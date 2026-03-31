@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+    --background: 0.13 0.005 260;
+    --foreground: 0.97 0.005 260;
+    --card: 0.17 0.006 260;
+    --card-foreground: 0.97 0.005 260;
+    --popover: 0.17 0.006 260;
+    --popover-foreground: 0.97 0.005 260;
+    --primary: 0.62 0.22 32;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.22 0.008 260;
+    --secondary-foreground: 0.97 0.005 260;
+    --muted: 0.22 0.008 260;
+    --muted-foreground: 0.65 0.01 260;
+    --accent: 0.75 0.14 75;
+    --accent-foreground: 0.13 0.005 260;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.28 0.008 260;
+    --input: 0.28 0.008 260;
+    --ring: 0.62 0.22 32;
+    --chart-1: 0.62 0.22 32;
+    --chart-2: 0.75 0.14 75;
+    --chart-3: 0.55 0.18 150;
+    --chart-4: 0.6 0.2 200;
+    --chart-5: 0.7 0.15 300;
+    --sidebar: 0.15 0.006 260;
+    --sidebar-foreground: 0.97 0.005 260;
+    --sidebar-primary: 0.62 0.22 32;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.22 0.008 260;
+    --sidebar-accent-foreground: 0.97 0.005 260;
+    --sidebar-border: 0.28 0.008 260;
+    --sidebar-ring: 0.62 0.22 32;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-heading {
+    font-family: "Anton", sans-serif;
+  }
+}
+
+@layer components {
+  .input-dark {
+    @apply w-full px-3 py-2.5 rounded-xl border text-sm outline-none;
+    background-color: #20242a;
+    border-color: #2a2f36;
+    color: #f2f4f7;
+  }
+  .input-dark:focus {
+    border-color: #e4572e;
+  }
+  .input-dark option {
+    background-color: #20242a;
+  }
+}
