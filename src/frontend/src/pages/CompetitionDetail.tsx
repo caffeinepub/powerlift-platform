@@ -37,6 +37,7 @@ export default function CompetitionDetail({ id }: { id: string }) {
       <div className="text-center py-20">
         <p className="font-heading text-2xl">COMPETITION NOT FOUND</p>
         <button
+          type="button"
           onClick={() => navigate("/competitions")}
           className="mt-4 text-sm"
           style={{ color: "#E4572E" }}
@@ -87,6 +88,7 @@ export default function CompetitionDetail({ id }: { id: string }) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
       <button
+        type="button"
         onClick={() => navigate("/competitions")}
         className="flex items-center gap-2 text-sm mb-6 hover:underline"
         style={{ color: "#A7AFB9" }}
@@ -221,7 +223,7 @@ export default function CompetitionDetail({ id }: { id: string }) {
                 <p className="text-sm font-semibold mb-3">Add Your Review</p>
                 <div className="flex gap-1 mb-3">
                   {[1, 2, 3, 4, 5].map((s) => (
-                    <button key={s} onClick={() => setRating(s)}>
+                    <button type="button" key={s} onClick={() => setRating(s)}>
                       <Star
                         size={20}
                         style={{ color: s <= rating ? "#D6A14A" : "#2A2F36" }}
@@ -243,6 +245,7 @@ export default function CompetitionDetail({ id }: { id: string }) {
                   }}
                 />
                 <button
+                  type="button"
                   onClick={handleSubmitReview}
                   className="mt-2 px-4 py-2 rounded-xl text-sm font-semibold"
                   style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -282,6 +285,7 @@ export default function CompetitionDetail({ id }: { id: string }) {
             </a>
             {currentUser?.role === "player" && !isParticipant && (
               <button
+                type="button"
                 onClick={() => joinCompetition(id)}
                 className="w-full mt-2 py-2.5 rounded-xl text-sm border hover:bg-white/10"
                 style={{ borderColor: "#2A2F36" }}

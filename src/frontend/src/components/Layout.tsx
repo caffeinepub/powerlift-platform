@@ -41,6 +41,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           {/* Logo */}
           <button
+            type="button"
             onClick={() => navigate("/")}
             className="flex items-center gap-2"
           >
@@ -49,7 +50,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               className="font-heading text-xl tracking-wide"
               style={{ color: "#F2F4F7" }}
             >
-              POWERLIFT
+              LIFTARENA
             </span>
           </button>
 
@@ -57,6 +58,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <nav className="hidden md:flex items-center gap-6">
             {NAV_LINKS.map((l) => (
               <button
+                type="button"
                 key={l.page}
                 onClick={() => navigate(l.page)}
                 className={cn(
@@ -74,6 +76,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {currentUser ? (
               <>
                 <button
+                  type="button"
                   onClick={() => navigate("/notifications")}
                   className="relative p-2 rounded-lg hover:bg-white/10 transition-colors"
                 >
@@ -89,6 +92,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </button>
                 <div className="relative">
                   <button
+                    type="button"
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
                     className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
                   >
@@ -112,6 +116,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       }}
                     >
                       <button
+                        type="button"
                         onClick={() => {
                           navigate("/profile");
                           setUserMenuOpen(false);
@@ -121,6 +126,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         Profile
                       </button>
                       <button
+                        type="button"
                         onClick={() => {
                           navigate(getDashboardPage());
                           setUserMenuOpen(false);
@@ -131,6 +137,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       </button>
                       <hr style={{ borderColor: "#2A2F36" }} className="my-1" />
                       <button
+                        type="button"
                         onClick={() => {
                           logout();
                           setUserMenuOpen(false);
@@ -146,6 +153,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             ) : (
               <>
                 <button
+                  type="button"
                   onClick={() => navigate("/login")}
                   className="text-sm px-4 py-2 rounded-lg border hover:bg-white/10 transition-colors"
                   style={{ borderColor: "#2A2F36" }}
@@ -153,6 +161,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   Login
                 </button>
                 <button
+                  type="button"
                   onClick={() => navigate("/register")}
                   className="text-sm px-4 py-2 rounded-lg font-semibold transition-colors"
                   style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -162,6 +171,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </>
             )}
             <button
+              type="button"
               className="md:hidden p-2"
               onClick={() => setMenuOpen(!menuOpen)}
             >
@@ -178,6 +188,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           >
             {NAV_LINKS.map((l) => (
               <button
+                type="button"
                 key={l.page}
                 onClick={() => {
                   navigate(l.page);
@@ -190,6 +201,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             ))}
             {currentUser && (
               <button
+                type="button"
                 onClick={() => {
                   navigate(getDashboardPage());
                   setMenuOpen(false);
@@ -216,7 +228,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2 mb-3">
                 <Zap size={20} style={{ color: "#E4572E" }} />
-                <span className="font-heading text-lg">POWERLIFT</span>
+                <span className="font-heading text-lg">LIFTARENA</span>
               </div>
               <p className="text-sm" style={{ color: "#A7AFB9" }}>
                 India's premier powerlifting competition platform.
@@ -263,7 +275,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             className="border-t pt-6 text-center text-sm"
             style={{ borderColor: "#2A2F36", color: "#A7AFB9" }}
           >
-            © 2026 PowerLift Platform. All rights reserved.
+            © 2026 LiftArena. All rights reserved.
           </div>
         </div>
       </footer>

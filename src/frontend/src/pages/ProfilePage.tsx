@@ -12,6 +12,7 @@ export default function ProfilePage() {
     return (
       <div className="text-center py-20">
         <button
+          type="button"
           onClick={() => navigate("/login")}
           className="px-6 py-2 rounded-xl"
           style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -84,6 +85,7 @@ export default function ProfilePage() {
           </div>
           {!editing && (
             <button
+              type="button"
               onClick={startEdit}
               className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm border hover:bg-white/10"
               style={{ borderColor: "#2A2F36" }}
@@ -139,6 +141,7 @@ export default function ProfilePage() {
             )}
             <div className="flex gap-3">
               <button
+                type="button"
                 onClick={save}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold"
                 style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -146,6 +149,7 @@ export default function ProfilePage() {
                 <Save size={14} /> Save
               </button>
               <button
+                type="button"
                 onClick={() => setEditing(false)}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm border hover:bg-white/10"
                 style={{ borderColor: "#2A2F36" }}
@@ -198,6 +202,7 @@ export default function ProfilePage() {
                   </p>
                 </div>
                 <button
+                  type="button"
                   onClick={() => navigate(`/competitions/${c.id}`)}
                   className="text-xs"
                   style={{ color: "#E4572E" }}

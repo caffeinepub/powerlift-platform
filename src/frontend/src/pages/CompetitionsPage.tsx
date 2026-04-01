@@ -22,10 +22,9 @@ export default function CompetitionsPage() {
     ),
   ].sort();
 
-  const now = new Date();
-  const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-
   const filtered = useMemo(() => {
+    const now = new Date();
+    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
     return competitions.filter((c) => {
       if (!c.active) return false;
       const matchSearch =
@@ -125,6 +124,7 @@ export default function CompetitionsPage() {
           </select>
           {(selectedState || selectedCity || search) && (
             <button
+              type="button"
               onClick={() => {
                 setSelectedState("");
                 setSelectedCity("");
@@ -141,6 +141,7 @@ export default function CompetitionsPage() {
         <div className="flex gap-2">
           {FILTER_TABS.map((tab) => (
             <button
+              type="button"
               key={tab}
               onClick={() => setActiveTab(tab)}
               className="text-xs px-4 py-1.5 rounded-full border transition-all"

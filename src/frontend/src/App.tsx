@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import Layout from "./components/Layout";
 import AdminPanel from "./pages/AdminPanel";
 import CompetitionDetail from "./pages/CompetitionDetail";
@@ -15,16 +15,21 @@ import { useStore } from "./store";
 export default function App() {
   const { currentPage, navigate } = useStore();
 
+  const stableNavigate = useCallback(
+    (path: string) => navigate(path),
+    [navigate],
+  );
+
   // Sync with browser history
   useEffect(() => {
     const handlePop = () => {
-      navigate(window.location.pathname);
+      stableNavigate(window.location.pathname);
     };
     window.addEventListener("popstate", handlePop);
     // Set initial page from URL
-    navigate(window.location.pathname);
+    stableNavigate(window.location.pathname);
     return () => window.removeEventListener("popstate", handlePop);
-  }, []);
+  }, [stableNavigate]);
 
   // Push to history when currentPage changes
   useEffect(() => {

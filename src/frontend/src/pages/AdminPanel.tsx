@@ -36,6 +36,7 @@ export default function AdminPanel() {
       <div className="text-center py-20">
         <p className="font-heading text-2xl mb-4">ACCESS RESTRICTED</p>
         <button
+          type="button"
           onClick={() => navigate("/login")}
           className="px-6 py-2 rounded-xl"
           style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -86,6 +87,7 @@ export default function AdminPanel() {
       <div className="flex gap-2 flex-wrap mb-8">
         {TABS.map(({ id, label, icon: Icon }) => (
           <button
+            type="button"
             key={id}
             onClick={() => setTab(id)}
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border transition-all"
@@ -291,6 +293,7 @@ export default function AdminPanel() {
                     <td className="px-4 py-3">
                       {u.role !== "admin" && (
                         <button
+                          type="button"
                           onClick={() => deleteUser(u.id)}
                           className="p-1.5 rounded-lg hover:bg-red-900/30"
                         >
@@ -332,6 +335,7 @@ export default function AdminPanel() {
                     </div>
                     <div className="flex gap-2">
                       <button
+                        type="button"
                         onClick={() => approveOrganizer(u.id)}
                         className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold"
                         style={{
@@ -343,6 +347,7 @@ export default function AdminPanel() {
                         <CheckCircle size={13} /> Approve
                       </button>
                       <button
+                        type="button"
                         onClick={() => rejectOrganizer(u.id)}
                         className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold"
                         style={{
@@ -448,6 +453,7 @@ export default function AdminPanel() {
                 </div>
                 <div className="flex items-center gap-2">
                   <button
+                    type="button"
                     onClick={() => toggleFeatured(c.id)}
                     title="Toggle featured"
                     className="p-1.5 rounded-lg hover:bg-white/10"
@@ -459,6 +465,7 @@ export default function AdminPanel() {
                     />
                   </button>
                   <button
+                    type="button"
                     onClick={() => toggleActive(c.id)}
                     title="Toggle active"
                     className="p-1.5 rounded-lg hover:bg-white/10"
@@ -470,6 +477,7 @@ export default function AdminPanel() {
                     )}
                   </button>
                   <button
+                    type="button"
                     onClick={() => deleteCompetition(c.id)}
                     className="p-1.5 rounded-lg hover:bg-red-900/30"
                   >

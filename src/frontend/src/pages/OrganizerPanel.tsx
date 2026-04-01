@@ -85,6 +85,7 @@ export default function OrganizerPanel() {
       <div className="text-center py-20">
         <p className="font-heading text-2xl mb-4">ACCESS RESTRICTED</p>
         <button
+          type="button"
           onClick={() => navigate("/login")}
           className="px-6 py-2 rounded-xl"
           style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -198,6 +199,7 @@ export default function OrganizerPanel() {
           </h1>
         </div>
         <button
+          type="button"
           onClick={() => {
             setTab("create");
             setEditId(null);
@@ -213,6 +215,7 @@ export default function OrganizerPanel() {
       <div className="flex gap-2 mb-6">
         {(["list", "create"] as const).map((t) => (
           <button
+            type="button"
             key={t}
             onClick={() => {
               setTab(t);
@@ -249,6 +252,7 @@ export default function OrganizerPanel() {
               Create your first competition
             </p>
             <button
+              type="button"
               onClick={() => setTab("create")}
               className="px-6 py-2.5 rounded-xl font-semibold text-sm"
               style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -292,6 +296,7 @@ export default function OrganizerPanel() {
                 </div>
                 <div className="flex items-center gap-2">
                   <button
+                    type="button"
                     onClick={() => setParticipantsModal(c)}
                     className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs border hover:bg-white/10"
                     style={{ borderColor: "#2A2F36" }}
@@ -299,12 +304,14 @@ export default function OrganizerPanel() {
                     <Users size={12} /> {c.participants.length}
                   </button>
                   <button
+                    type="button"
                     onClick={() => startEdit(c)}
                     className="p-2 rounded-lg hover:bg-white/10"
                   >
                     <Edit size={14} style={{ color: "#A7AFB9" }} />
                   </button>
                   <button
+                    type="button"
                     onClick={() => deleteCompetition(c.id)}
                     className="p-2 rounded-lg hover:bg-red-900/30"
                   >
@@ -478,8 +485,8 @@ export default function OrganizerPanel() {
               <div className="flex flex-wrap gap-2">
                 {WEIGHT_OPTIONS.map((w) => (
                   <button
-                    key={w}
                     type="button"
+                    key={w}
                     onClick={() => toggleWeight(w)}
                     className="text-xs px-2.5 py-1 rounded-full border transition-all"
                     style={{
@@ -521,6 +528,7 @@ export default function OrganizerPanel() {
             {error && <p className="text-xs text-red-400">{error}</p>}
             <div className="flex gap-3">
               <button
+                type="button"
                 onClick={handleSubmit}
                 className="flex-1 py-3 rounded-xl font-semibold text-sm"
                 style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -528,6 +536,7 @@ export default function OrganizerPanel() {
                 {editId ? "Update" : "Create Competition"}
               </button>
               <button
+                type="button"
                 onClick={() => {
                   setTab("list");
                   setEditId(null);
@@ -551,7 +560,7 @@ export default function OrganizerPanel() {
           >
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-heading text-lg">PARTICIPANTS</h3>
-              <button onClick={() => setParticipantsModal(null)}>
+              <button type="button" onClick={() => setParticipantsModal(null)}>
                 <X size={18} style={{ color: "#A7AFB9" }} />
               </button>
             </div>

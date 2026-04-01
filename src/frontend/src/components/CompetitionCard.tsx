@@ -145,6 +145,7 @@ export default function CompetitionCard({ competition, onDetails }: Props) {
         {/* Actions */}
         <div className="flex gap-2 mt-auto pt-2">
           <button
+            type="button"
             onClick={() =>
               onDetails
                 ? onDetails()

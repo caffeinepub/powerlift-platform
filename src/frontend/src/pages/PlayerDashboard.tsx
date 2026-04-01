@@ -34,11 +34,11 @@ export default function PlayerDashboard() {
       ].sort(),
     [competitions, selectedState],
   );
-  const now = new Date();
-  const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
 
   const filtered = useMemo(() => {
     if (!currentUser || currentUser.role !== "player") return [];
+    const now = new Date();
+    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
     return competitions.filter((c) => {
       if (!c.active) return false;
       const matchSearch =
@@ -76,6 +76,7 @@ export default function PlayerDashboard() {
       <div className="text-center py-20">
         <p className="font-heading text-2xl mb-4">ACCESS RESTRICTED</p>
         <button
+          type="button"
           onClick={() => navigate("/login")}
           className="px-6 py-2 rounded-xl"
           style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -202,6 +203,7 @@ export default function PlayerDashboard() {
         <div className="flex gap-2 flex-wrap">
           {FILTER_TABS.map((tab) => (
             <button
+              type="button"
               key={tab}
               onClick={() => setActiveTab(tab)}
               className="text-xs px-4 py-1.5 rounded-full border transition-all"

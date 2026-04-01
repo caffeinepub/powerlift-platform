@@ -66,6 +66,7 @@ export default function Home() {
                 />
               </div>
               <button
+                type="button"
                 onClick={handleSearch}
                 className="px-6 py-3 rounded-xl font-semibold text-sm"
                 style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -76,6 +77,7 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-3">
               <button
+                type="button"
                 onClick={() => navigate("/competitions")}
                 className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-colors hover:opacity-90"
                 style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -83,6 +85,7 @@ export default function Home() {
                 FIND AN EVENT <ArrowRight size={16} />
               </button>
               <button
+                type="button"
                 onClick={() => navigate("/register")}
                 className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border transition-colors hover:bg-white/10"
                 style={{ borderColor: "#2A2F36" }}
@@ -139,6 +142,7 @@ export default function Home() {
               </p>
             </div>
             <button
+              type="button"
               onClick={() => navigate("/competitions")}
               className="text-sm flex items-center gap-1 hover:underline"
               style={{ color: "#E4572E" }}
@@ -219,6 +223,7 @@ export default function Home() {
             Join thousands of powerlifters across India.
           </p>
           <button
+            type="button"
             onClick={() => navigate("/register")}
             className="px-8 py-3 rounded-xl font-semibold"
             style={{ backgroundColor: "#E4572E", color: "#fff" }}

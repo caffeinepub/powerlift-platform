@@ -9,6 +9,7 @@ export default function NotificationsPage() {
     return (
       <div className="text-center py-20">
         <button
+          type="button"
           onClick={() => navigate("/login")}
           className="px-6 py-2 rounded-xl"
           style={{ backgroundColor: "#E4572E", color: "#fff" }}
@@ -43,6 +44,7 @@ export default function NotificationsPage() {
         </div>
         {unread.length > 0 && (
           <button
+            type="button"
             onClick={markAllRead}
             className="flex items-center gap-1.5 text-sm px-3 py-2 rounded-xl border hover:bg-white/10"
             style={{ borderColor: "#2A2F36" }}
@@ -71,6 +73,7 @@ export default function NotificationsPage() {
         <div className="space-y-2">
           {myNotifs.map((n) => (
             <button
+              type="button"
               key={n.id}
               onClick={() => markNotificationRead(n.id)}
               className="w-full text-left p-4 rounded-2xl border transition-all hover:border-orange-500/30"

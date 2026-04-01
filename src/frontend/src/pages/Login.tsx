@@ -1,48 +1,65 @@
 import { Phone, Shield, Zap } from "lucide-react";
 import { useState } from "react";
 import { useStore } from "../store";
+import { sendOtp, verifyOtp } from "../utils/twoFactor";
 
 export default function Login() {
   const { login, navigate } = useStore();
   const [step, setStep] = useState<"phone" | "otp">("phone");
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
+  const [sessionId, setSessionId] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSendOtp = () => {
+  const handleSendOtp = async () => {
     if (phone.length < 10) {
       setError("Enter a valid 10-digit phone number");
       return;
     }
     setError("");
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const sid = await sendOtp(phone);
+      setSessionId(sid);
       setStep("otp");
-    }, 800);
+    } catch {
+      setError("Failed to send OTP. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleVerify = () => {
+  const handleVerify = async () => {
     if (otp.length !== 6) {
       setError("Enter the 6-digit OTP");
       return;
     }
     setLoading(true);
-    setTimeout(() => {
+    try {
+      const valid = await verifyOtp(sessionId, otp);
+      if (!valid) {
+        setError("Invalid or expired OTP. Please try again.");
+        setLoading(false);
+        return;
+      }
       const user = login(phone);
-      setLoading(false);
       if (!user) {
         setError(
           "No account found with this phone number. Please register first.",
         );
         setStep("phone");
+        setLoading(false);
         return;
       }
       if (user.role === "admin") navigate("/admin");
       else if (user.role === "organizer") navigate("/organizer");
       else navigate("/dashboard");
-    }, 800);
+    } catch {
+      setError("Verification failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,7 +74,7 @@ export default function Login() {
           </div>
           <h1 className="font-heading text-3xl">WELCOME BACK</h1>
           <p className="text-sm mt-2" style={{ color: "#A7AFB9" }}>
-            Login to your PowerLift account
+            Login to your LiftArena account
           </p>
         </div>
 
@@ -97,28 +114,14 @@ export default function Login() {
               </div>
               {error && <p className="text-xs text-red-400">{error}</p>}
               <button
+                type="button"
                 onClick={handleSendOtp}
                 disabled={loading}
                 className="w-full py-3 rounded-xl font-semibold text-sm disabled:opacity-60"
                 style={{ backgroundColor: "#E4572E", color: "#fff" }}
               >
-                {loading ? "Sending..." : "Send OTP"}
+                {loading ? "Sending OTP..." : "Send OTP"}
               </button>
-              <div className="text-xs text-center" style={{ color: "#A7AFB9" }}>
-                Demo phones:{" "}
-                <span className="font-mono" style={{ color: "#E4572E" }}>
-                  0000000000
-                </span>{" "}
-                (admin),{" "}
-                <span className="font-mono" style={{ color: "#E4572E" }}>
-                  1111111111
-                </span>{" "}
-                (organizer),{" "}
-                <span className="font-mono" style={{ color: "#E4572E" }}>
-                  2222222222
-                </span>{" "}
-                (player)
-              </div>
             </div>
           ) : (
             <div className="space-y-4">
@@ -135,7 +138,7 @@ export default function Login() {
                   OTP sent to <strong>+91 {phone}</strong>
                 </p>
                 <p className="text-xs mt-1" style={{ color: "#A7AFB9" }}>
-                  Enter any 6-digit code to continue
+                  Enter the 6-digit code sent via SMS
                 </p>
               </div>
               <div>
@@ -163,6 +166,7 @@ export default function Login() {
               </div>
               {error && <p className="text-xs text-red-400">{error}</p>}
               <button
+                type="button"
                 onClick={handleVerify}
                 disabled={loading}
                 className="w-full py-3 rounded-xl font-semibold text-sm disabled:opacity-60"
@@ -171,8 +175,10 @@ export default function Login() {
                 {loading ? "Verifying..." : "Verify & Login"}
               </button>
               <button
+                type="button"
                 onClick={() => {
                   setStep("phone");
+                  setOtp("");
                   setError("");
                 }}
                 className="w-full text-sm"
@@ -187,6 +193,7 @@ export default function Login() {
         <p className="text-center text-sm mt-4" style={{ color: "#A7AFB9" }}>
           Don&apos;t have an account?{" "}
           <button
+            type="button"
             onClick={() => navigate("/register")}
             className="font-semibold"
             style={{ color: "#E4572E" }}
